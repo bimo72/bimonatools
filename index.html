@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bimonatools ― 働くをちょっとラクにする道具箱</title>
+<meta name="description" content="個人開発の業務効率化ツールを配布しています。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBF6EC;
+    --paper-alt: #F5E9D6;
+    --ink: #3B2F27;
+    --ink-soft: #6B5D4F;
+    --marigold: #E0972E;
+    --marigold-deep: #C97F1E;
+    --sage: #7C9473;
+    --line: #E4D6BE;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Zen Maru Gothic', sans-serif;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    padding: 28px 0;
+  }
+  header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+  }
+  .brand-mark {
+    display: inline-flex;
+    gap: 3px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .brand-mark span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .brand-mark span:nth-child(1) { background: var(--marigold); }
+  .brand-mark span:nth-child(2) { background: var(--sage); }
+  .brand-mark span:nth-child(3) { background: var(--marigold-deep); }
+
+  nav a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    margin-left: 24px;
+  }
+  nav a:hover { color: var(--marigold-deep); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 64px 0 80px;
+    opacity: 0;
+    animation: rise 0.9s ease-out forwards;
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero { animation: none; opacity: 1; }
+  }
+
+  .hero p.eyebrow {
+    color: var(--sage);
+    font-size: 0.95rem;
+    margin: 0 0 18px;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    max-width: 13ch;
+  }
+
+  .hero .lede {
+    margin-top: 24px;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 42ch;
+  }
+
+  .hero .cta {
+    margin-top: 36px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--marigold);
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-size: 0.98rem;
+    font-weight: 500;
+    box-shadow: 0 4px 0 var(--marigold-deep);
+    transition: transform 0.15s ease;
+  }
+  .hero .cta:hover { transform: translateY(-2px); }
+  .hero .cta:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--marigold-deep); }
+
+  /* decorative paw dots trail */
+  .trail {
+    margin-top: 56px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .trail .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--line);
+  }
+  .trail .dot.big { width: 10px; height: 10px; background: var(--sage); opacity: 0.6; }
+
+  /* ---------- Section shell ---------- */
+  section { padding: 56px 0; }
+  section + section { border-top: 1px solid var(--line); }
+
+  .section-head { margin-bottom: 40px; }
+  .section-head h2 { font-size: 1.6rem; }
+  .section-head p { color: var(--ink-soft); margin-top: 12px; font-size: 0.98rem; }
+
+  /* ---------- Apps list ---------- */
+  #apps-list { list-style: none; margin: 0; padding: 0; }
+  .app-row {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .app-row:first-child { padding-top: 0; }
+  .app-row:last-child { border-bottom: none; }
+
+  .app-icon {
+    flex: none;
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: var(--paper-alt);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+  }
+
+  .app-body { flex: 1; min-width: 0; }
+  .app-body h3 { font-size: 1.1rem; }
+  .app-body .desc {
+    margin-top: 6px;
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+  }
+  .app-body .meta {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .price-tag {
+    font-size: 0.82rem;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(124,148,115,0.15);
+    color: var(--sage);
+  }
+  .price-tag.paid {
+    background: rgba(224,151,46,0.15);
+    color: var(--marigold-deep);
+  }
+  .app-link {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: var(--marigold-deep);
+    border-bottom: 1px solid currentColor;
+  }
+
+  .empty-note {
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+  }
+
+  /* ---------- About ---------- */
+  .about p { margin: 0 0 18px; color: var(--ink-soft); font-size: 0.98rem; max-width: 56ch; }
+  .about p:last-child { margin-bottom: 0; }
+
+  /* ---------- Footer ---------- */
+  footer { padding: 40px 0 60px; }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  footer .copy { font-size: 0.85rem; color: var(--ink-soft); }
+  footer .links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    margin-left: 18px;
+  }
+  footer .links a:hover { color: var(--marigold-deep); }
+
+  @media (max-width: 560px) {
+    .hero h1 { font-size: 2rem; }
+    .app-row { gap: 14px; }
+    .app-icon { width: 44px; height: 44px; font-size: 1.2rem; }
+    footer .wrap { flex-direction: column; align-items: flex-start; }
+    footer .links a { margin-left: 0; margin-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand"><span class="brand-mark"><span></span><span></span><span></span></span>bimonatools</div>
+    <nav>
+      <a href="#apps">つくったもの</a>
+      <a href="#about">about</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">個人開発の小さな道具箱</p>
+    <h1>働くをちょっと、<br>ラクにする。</h1>
+    <p class="lede">
+      日々の面倒な作業をなくすために作った、小さなツールを置いています。
+      まずは無料で試せるものから、少しずつ増やしていく予定です。
+    </p>
+    <a class="cta" href="#apps">つくったものを見る</a>
+    <div class="trail">
+      <span class="dot big"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<section id="apps">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>つくったもの</h2>
+      <p>ここに並んでいるのはすべて実際の業務課題から生まれたツールです。気になるものがあれば覗いてみてください。</p>
+    </div>
+    <ul id="apps-list"></ul>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>about</h2>
+    </div>
+    <div class="about">
+      <p>普段は会社で業務システムの開発をしながら、空いた時間で個人開発をしています。仕事の中で「こういうのがあったら助かるのに」と思ったものを、個人でも使える形にして少しずつ公開しています。</p>
+      <p>「bimonatools」という名前は、うちで飼っている3匹(ビリー、モコ、ナツ)の名前から取りました。肩の力を抜いて使ってもらえる道具でありたいと思っています。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="copy">&copy; 2026 bimonatools</div>
+    <div class="links">
+      <a href="#" id="sns-link">X (Twitter)</a>
+      <a href="#" id="mail-link">お問い合わせ</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  async function loadApps() {
+    const list = document.getElementById('apps-list');
+    try {
+      const res = await fetch('apps.json', { cache: 'no-store' });
+      const apps = await res.json();
+
+      if (!apps.length) {
+        list.innerHTML = '<li class="empty-note">近日公開予定です。もうしばらくお待ちください。</li>';
+        return;
+      }
+
+      list.innerHTML = apps.map(app => `
+        <li class="app-row">
+          <div class="app-icon">${app.icon || '🧰'}</div>
+          <div class="app-body">
+            <h3>${app.name}</h3>
+            <p class="desc">${app.description}</p>
+            <div class="meta">
+              <span class="price-tag ${app.price === '無料' ? '' : 'paid'}">${app.price || '無料'}</span>
+              <a class="app-link" href="${app.url}" target="_blank" rel="noopener">くわしく見る</a>
+            </div>
+          </div>
+        </li>
+      `).join('');
+    } catch (e) {
+      list.innerHTML = '<li class="empty-note">近日公開予定です。もうしばらくお待ちください。</li>';
+    }
+  }
+  loadApps();
+</script>
+
+</body>
+</html>
