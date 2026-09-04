@@ -9,7 +9,7 @@
 
 - 屋号: bimonatools
 - 由来: 飼っている3匹のペット(ビリー・モコ・ナツ)の名前から
-- ポートフォリオサイト: https://bimo72.github.io/bimonatools/(GitHub Pagesで公開)
+- - ポートフォリオサイト: https://bimo72.github.io/bimonatools/ (GitHub Pagesで公開)
 - アプリ一覧は `apps.json` を編集するだけで反映される仕組み
 
 ## 配布・販売の基本方針
