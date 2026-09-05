@@ -1,9 +1,9 @@
 [
   {
-    "name": "サンプルアプリ",
-    "description": "ここに配布するアプリの説明を書きます。何ができて、誰の役に立つのかを一言で。",
-    "icon": "🗂️",
+    "name": "公文書toPDF",
+    "description": "e-Govや日本年金機構、ハローワークなどから届く通知書を、レイアウトを崩さずそのままPDF化。「書類をアップロードして変換する」のではなく、お使いのパソコンの中だけで変換が完結する仕組みです。書類の中身が外部に送られることはなく、私を含め誰かに見られることもありません。変換中にネットワーク通信が発生しないことは、ブラウザの開発者ツール(Networkタブ)で確認いただけます。",
+    "icon": "assets/icons/koubunsho-to-pdf.jpg",
     "price": "無料",
-    "url": "https://booth.pm/"
+    "url": "https://script.google.com/macros/s/AKfycbwBKiaPXRlkMAO0g0GhGiI78RYACu5XaTtpYP-md4sYqTp_IP1g7eti4dSh-QeMcwExMQ/exec"
   }
 ]

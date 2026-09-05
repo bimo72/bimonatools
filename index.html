@@ -3,21 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>bimonatools ― 働くをちょっとラクにする道具箱</title>
+<title>BIMONAtools ― 働くをちょっとラクにする道具箱</title>
 <meta name="description" content="個人開発の業務効率化ツールを配布しています。">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YLEJGRG45F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YLEJGRG45F');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #FBF6EC;
-    --paper-alt: #F5E9D6;
-    --ink: #3B2F27;
-    --ink-soft: #6B5D4F;
-    --marigold: #E0972E;
-    --marigold-deep: #C97F1E;
-    --sage: #7C9473;
-    --line: #E4D6BE;
+    --primary: #2F4C6B;
+    --primary-light: #5B7A99;
+    --accent: #C97B4A;
+    --text: #2B2E33;
+    --muted: #8A929B;
+    --bg: #F8F6F3;
+    --border: #E3E6EA;
+    --billy-tan: #C99A46;
   }
 
   * { box-sizing: border-box; }
@@ -26,15 +34,14 @@
 
   body {
     margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Zen Maru Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", "Yu Gothic", sans-serif;
     line-height: 1.85;
     -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3 {
-    font-family: 'Shippori Mincho B1', serif;
     font-weight: 700;
     line-height: 1.5;
     margin: 0;
@@ -49,49 +56,53 @@
   }
 
   /* ---------- Header ---------- */
-  header {
-    padding: 28px 0;
+  .site-header {
+    background: var(--primary);
+    border-bottom: 4px solid var(--billy-tan);
+    padding: 14px 0;
   }
-  header .wrap {
+  .site-header .wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .brand {
-    font-family: 'Shippori Mincho B1', serif;
-    font-weight: 700;
-    font-size: 1.15rem;
-    letter-spacing: 0.02em;
-  }
-  .brand-mark {
+  .site-header .logo-link {
     display: inline-flex;
-    gap: 3px;
-    margin-right: 8px;
-    vertical-align: middle;
+    align-items: center;
+    color: #fff;
+    line-height: 0;
   }
-  .brand-mark span {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    display: inline-block;
+  .site-header .logo-link svg {
+    height: 26px;
+    width: auto;
+    display: block;
   }
-  .brand-mark span:nth-child(1) { background: var(--marigold); }
-  .brand-mark span:nth-child(2) { background: var(--sage); }
-  .brand-mark span:nth-child(3) { background: var(--marigold-deep); }
-
-  nav a {
+  .site-header nav a {
+    color: #fff;
     text-decoration: none;
-    color: var(--ink-soft);
     font-size: 0.92rem;
     margin-left: 24px;
+    opacity: 0.9;
   }
-  nav a:hover { color: var(--marigold-deep); }
+  .site-header nav a:hover { opacity: 1; text-decoration: underline; }
 
   /* ---------- Hero ---------- */
   .hero {
+    position: relative;
+    overflow: hidden;
     padding: 64px 0 80px;
     opacity: 0;
     animation: rise 0.9s ease-out forwards;
+  }
+  .hero-badge {
+    position: absolute;
+    top: -10%;
+    right: -6%;
+    width: 320px;
+    height: auto;
+    color: var(--primary-light);
+    opacity: 0.16;
+    pointer-events: none;
   }
   @keyframes rise {
     from { opacity: 0; transform: translateY(14px); }
@@ -101,62 +112,42 @@
     .hero { animation: none; opacity: 1; }
   }
 
+  .hero .wrap {
+    position: relative;
+    z-index: 1;
+  }
+
   .hero p.eyebrow {
-    color: var(--sage);
+    color: var(--primary-light);
     font-size: 0.95rem;
     margin: 0 0 18px;
+    font-weight: 500;
   }
 
   .hero h1 {
     font-size: 2.5rem;
     max-width: 13ch;
+    color: var(--primary);
+  }
+  .hero h1 span {
+    display: inline-block;
+    white-space: nowrap;
   }
 
   .hero .lede {
     margin-top: 24px;
     font-size: 1.05rem;
-    color: var(--ink-soft);
+    color: var(--text);
     max-width: 42ch;
   }
 
-  .hero .cta {
-    margin-top: 36px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--marigold);
-    color: #fff;
-    text-decoration: none;
-    padding: 14px 26px;
-    border-radius: 999px;
-    font-size: 0.98rem;
-    font-weight: 500;
-    box-shadow: 0 4px 0 var(--marigold-deep);
-    transition: transform 0.15s ease;
-  }
-  .hero .cta:hover { transform: translateY(-2px); }
-  .hero .cta:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--marigold-deep); }
-
-  /* decorative paw dots trail */
-  .trail {
-    margin-top: 56px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .trail .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--line);
-  }
-  .trail .dot.big { width: 10px; height: 10px; background: var(--sage); opacity: 0.6; }
-
   /* ---------- Section shell ---------- */
   section { padding: 56px 0; }
-  section + section { border-top: 1px solid var(--line); }
+  section + section { border-top: 1px solid var(--border); }
 
   .section-head { margin-bottom: 40px; }
-  .section-head h2 { font-size: 1.6rem; }
-  .section-head p { color: var(--ink-soft); margin-top: 12px; font-size: 0.98rem; }
+  .section-head h2 { font-size: 1.6rem; color: var(--primary); }
+  .section-head p { color: var(--muted); margin-top: 12px; font-size: 0.98rem; }
 
   /* ---------- Apps list ---------- */
   #apps-list { list-style: none; margin: 0; padding: 0; }
@@ -164,7 +155,7 @@
     display: flex;
     gap: 20px;
     padding: 28px 0;
-    border-bottom: 1px dashed var(--line);
+    border-bottom: 1px dashed var(--border);
   }
   .app-row:first-child { padding-top: 0; }
   .app-row:last-child { border-bottom: none; }
@@ -173,16 +164,23 @@
     flex: none;
     width: 52px; height: 52px;
     border-radius: 14px;
-    background: var(--paper-alt);
+    background: #fff;
+    border: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center;
     font-size: 1.4rem;
+    overflow: hidden;
+  }
+  .app-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .app-body { flex: 1; min-width: 0; }
-  .app-body h3 { font-size: 1.1rem; }
+  .app-body h3 { font-size: 1.1rem; color: var(--text); }
   .app-body .desc {
     margin-top: 6px;
-    color: var(--ink-soft);
+    color: var(--muted);
     font-size: 0.94rem;
   }
   .app-body .meta {
@@ -196,61 +194,76 @@
     font-size: 0.82rem;
     padding: 3px 10px;
     border-radius: 999px;
-    background: rgba(124,148,115,0.15);
-    color: var(--sage);
+    background: #EAF0F5;
+    color: var(--primary);
   }
   .price-tag.paid {
-    background: rgba(224,151,46,0.15);
-    color: var(--marigold-deep);
+    background: rgba(201,123,74,0.15);
+    color: var(--accent);
   }
   .app-link {
     font-size: 0.9rem;
     text-decoration: none;
-    color: var(--marigold-deep);
+    color: var(--accent);
     border-bottom: 1px solid currentColor;
   }
 
   .empty-note {
-    color: var(--ink-soft);
+    color: var(--muted);
     font-size: 0.94rem;
   }
 
   /* ---------- About ---------- */
-  .about p { margin: 0 0 18px; color: var(--ink-soft); font-size: 0.98rem; max-width: 56ch; }
+  .about p { margin: 0 0 18px; color: var(--text); font-size: 0.98rem; max-width: 56ch; }
   .about p:last-child { margin-bottom: 0; }
 
   /* ---------- Footer ---------- */
-  footer { padding: 40px 0 60px; }
-  footer .wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
+  .site-footer {
+    background: var(--primary);
+    border-top: 4px solid var(--billy-tan);
+    padding: 20px 0;
   }
-  footer .copy { font-size: 0.85rem; color: var(--ink-soft); }
-  footer .links a {
-    text-decoration: none;
-    color: var(--ink-soft);
-    font-size: 0.85rem;
-    margin-left: 18px;
+  .site-footer .wrap {
+    text-align: center;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.8rem;
   }
-  footer .links a:hover { color: var(--marigold-deep); }
 
   @media (max-width: 560px) {
     .hero h1 { font-size: 2rem; }
     .app-row { gap: 14px; }
     .app-icon { width: 44px; height: 44px; font-size: 1.2rem; }
-    footer .wrap { flex-direction: column; align-items: flex-start; }
-    footer .links a { margin-left: 0; margin-right: 16px; }
   }
 </style>
 </head>
 <body>
 
-<header>
+<header class="site-header">
   <div class="wrap">
-    <div class="brand"><span class="brand-mark"><span></span><span></span><span></span></span>bimonatools</div>
+    <a class="logo-link" href="#" aria-label="BIMONAtools">
+      <svg viewBox="0 0 267.98584 47.1367" role="img" aria-hidden="true">
+        <g transform="translate(-15.449134,-127.23984)">
+          <g transform="matrix(0.03527778,0,0,-0.03527778,-143.34797,283.81045)" fill="currentColor" stroke="none">
+            <path d="m 11350,3515 v -406 l 68,3 67,3 3,340 c 2,187 0,368 -3,403 l -7,62 h -64 -64 z" />
+            <path d="m 7170,3879 c -119,-23 -236,-115 -288,-227 -23,-50 -27,-70 -27,-157 0,-88 3,-107 27,-157 78,-166 260,-259 453,-231 199,28 332,168 343,359 15,279 -219,469 -508,413 z m 188,-165 c 186,-77 186,-361 0,-439 -124,-51 -275,19 -312,144 -20,68 -20,84 0,150 18,62 84,135 136,150 52,15 135,13 176,-5 z" />
+            <path d="m 5495,3868 c -3,-7 -4,-180 -3,-383 l 3,-370 h 90 90 v 380 380 l -88,3 c -64,2 -89,-1 -92,-10 z" />
+            <path d="m 5847,3873 c -4,-3 -7,-177 -7,-385 v -378 h 85 85 l 2,223 3,222 111,-180 110,-180 45,-3 44,-3 110,183 110,183 3,-222 2,-223 h 85 85 v 379 379 l -70,7 c -48,5 -75,3 -84,-5 -8,-6 -70,-104 -137,-218 -67,-114 -128,-213 -134,-220 -15,-17 -16,-17 -170,238 -65,107 -123,198 -129,202 -14,10 -140,10 -149,1 z" />
+            <path d="m 7810,3495 v -386 l 88,3 87,3 5,224 5,224 177,-215 c 97,-118 183,-220 191,-227 10,-7 40,-11 84,-9 l 68,3 v 380 380 l -87,3 -88,3 v -226 c 0,-124 -3,-225 -7,-224 -5,0 -78,86 -163,190 -230,282 -205,259 -289,259 h -71 z" />
+            <path d="m 8912,3839 c -11,-24 -87,-196 -171,-381 -83,-186 -151,-340 -151,-343 0,-3 42,-4 92,-3 l 93,3 32,75 32,75 h 182 182 l 33,-75 33,-75 95,-3 c 53,-1 96,-1 96,1 0,4 -339,750 -343,753 -1,2 -44,6 -95,10 l -91,7 z m 168,-280 c 30,-73 57,-136 58,-140 2,-5 -48,-9 -112,-9 -81,0 -116,3 -116,12 0,15 104,267 110,268 3,0 30,-59 60,-131 z" />
+            <path d="m 9550,3760 v -70 h -50 -50 v -55 -55 h 49 50 l 3,-184 c 3,-210 7,-222 88,-263 53,-27 151,-31 206,-8 38,16 39,25 7,88 -16,31 -13,30 -50,16 -15,-6 -43,-8 -61,-4 -51,10 -62,46 -62,215 v 140 h 80 80 v 55 55 h -80 -80 v 70 70 h -65 -65 z" />
+            <path d="m 10122,3685 c -134,-41 -214,-170 -198,-316 16,-156 133,-259 297,-259 105,0 162,21 226,85 40,41 55,65 68,110 49,167 -34,334 -188,380 -62,18 -147,18 -205,0 z m 189,-128 c 18,-12 44,-38 57,-57 20,-30 23,-45 20,-105 -5,-112 -60,-168 -163,-169 -104,-1 -171,79 -163,195 5,66 24,100 78,137 46,31 124,31 171,-1 z" />
+            <path d="m 10810,3685 c -117,-39 -190,-135 -198,-261 -8,-132 44,-226 160,-283 53,-27 72,-31 139,-31 138,0 238,59 288,170 23,51 28,159 10,220 -19,63 -78,131 -142,164 -70,36 -184,45 -257,21 z m 190,-126 c 100,-56 111,-234 19,-302 -56,-40 -144,-40 -206,0 -63,41 -85,177 -40,244 53,78 147,102 227,58 z" />
+            <path d="m 11752,3685 c -94,-29 -149,-100 -139,-180 9,-88 61,-125 214,-156 118,-24 133,-31 133,-70 0,-25 -6,-32 -37,-46 -52,-21 -145,-13 -218,21 -32,14 -58,26 -59,26 -2,0 -13,-22 -26,-50 -29,-62 -22,-73 73,-101 55,-16 90,-20 166,-17 157,5 231,56 238,162 8,106 -44,151 -215,184 -57,12 -110,26 -118,33 -21,18 -17,57 9,73 49,33 104,31 242,-9 17,-5 24,2 42,45 21,48 21,51 3,60 -70,37 -228,50 -308,25 z" />
+            <g transform="matrix(0.93133897,0,0,0.93133897,369.40099,273.43302)">
+              <circle style="fill:currentColor;stroke-width:4.8563" cx="4575.7881" cy="-4235.4546" r="139.23589" transform="scale(1,-1)" />
+              <circle style="fill:currentColor;stroke-width:4.8563" cx="5291.8979" cy="-4242.9121" r="139.23589" transform="scale(1,-1)" />
+              <path style="stroke-width:0.5" d="m 4857.6977,4093.6713 c -132,-22 -240.5,-102.5 -295.5,-219 -41,-87.5 -45.5,-133.5 -43.5,-452.5 1.5,-225 2.5,-249.5 11,-271 12.5,-33 47,-70 79,-84.5 26,-12 29,-12 208,-13.5 253,-2.5 311,4.5 400,47 35.5,17 54.5,30 78.5,54.5 84,84 101,220.5 40,324.5 -17.5,30 -67.5,75.5 -100.5,92 l -26,12.5 24.5,22.5 c 79,71 92,201 31,310.5 -21.5,39.5 -82,100.5 -123,125 -34.5,20.5 -99.5,43 -143.5,50 -31.5,5.5 -114.5,6.5 -140,2 z m 131.5,-199.5 c 28.5,-9.5 65.5,-41.5 79.5,-68.5 12.5,-25.5 17,-71 9,-95.5 -8,-24.5 -27,-46 -52,-59.5 -19.5,-10.5 -27.5,-11 -151.5,-12.5 l -131.5,-1.5 v 41.5 c 0,44 7.5,80 22.5,109 42.5,82 134,117.5 224,87 z m 88.5,-430 c 57,-27.5 80.5,-78.5 63,-138 -9,-31.5 -29.5,-53.5 -65.5,-70 -24,-11 -31,-11.5 -178.5,-13 l -154,-2 v 118.5 118 l 156.5,-1.5 c 147.5,-1.5 157,-2 178.5,-12 z" />
+              <circle style="fill:currentColor;stroke-width:4.8563" cx="4936.6851" cy="-4332.5933" r="139.23589" transform="scale(1,-1)" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </a>
     <nav>
       <a href="#apps">つくったもの</a>
       <a href="#about">about</a>
@@ -259,17 +272,23 @@
 </header>
 
 <section class="hero">
+  <svg class="hero-badge" viewBox="0 0 56.329693 80.373177" role="img" aria-hidden="true">
+    <g transform="translate(-47.519829,-78.332015)">
+      <g transform="matrix(0.05663657,0,0,-0.05663657,-203.75127,331.60108)" fill="currentColor" stroke="none">
+        <circle cx="4575.7881" cy="-4235.4546" r="139.23589" transform="scale(1,-1)" />
+        <circle cx="5291.8979" cy="-4242.9121" r="139.23589" transform="scale(1,-1)" />
+        <path d="m 4857.6977,4093.6713 c -132,-22 -240.5,-102.5 -295.5,-219 -41,-87.5 -45.5,-133.5 -43.5,-452.5 1.5,-225 2.5,-249.5 11,-271 12.5,-33 47,-70 79,-84.5 26,-12 29,-12 208,-13.5 253,-2.5 311,4.5 400,47 35.5,17 54.5,30 78.5,54.5 84,84 101,220.5 40,324.5 -17.5,30 -67.5,75.5 -100.5,92 l -26,12.5 24.5,22.5 c 79,71 92,201 31,310.5 -21.5,39.5 -82,100.5 -123,125 -34.5,20.5 -99.5,43 -143.5,50 -31.5,5.5 -114.5,6.5 -140,2 z m 131.5,-199.5 c 28.5,-9.5 65.5,-41.5 79.5,-68.5 12.5,-25.5 17,-71 9,-95.5 -8,-24.5 -27,-46 -52,-59.5 -19.5,-10.5 -27.5,-11 -151.5,-12.5 l -131.5,-1.5 v 41.5 c 0,44 7.5,80 22.5,109 42.5,82 134,117.5 224,87 z m 88.5,-430 c 57,-27.5 80.5,-78.5 63,-138 -9,-31.5 -29.5,-53.5 -65.5,-70 -24,-11 -31,-11.5 -178.5,-13 l -154,-2 v 118.5 118 l 156.5,-1.5 c 147.5,-1.5 157,-2 178.5,-12 z" />
+        <circle cx="4936.6851" cy="-4332.5933" r="139.23589" transform="scale(1,-1)" />
+      </g>
+    </g>
+  </svg>
   <div class="wrap">
     <p class="eyebrow">個人開発の小さな道具箱</p>
-    <h1>働くをちょっと、<br>ラクにする。</h1>
+    <h1><span>働くをちょっと、</span><br><span>ラクにする。</span></h1>
     <p class="lede">
       日々の面倒な作業をなくすために作った、小さなツールを置いています。
       まずは無料で試せるものから、少しずつ増やしていく予定です。
     </p>
-    <a class="cta" href="#apps">つくったものを見る</a>
-    <div class="trail">
-      <span class="dot big"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-    </div>
   </div>
 </section>
 
@@ -289,19 +308,14 @@
       <h2>about</h2>
     </div>
     <div class="about">
-      <p>普段は会社で業務システムの開発をしながら、空いた時間で個人開発をしています。仕事の中で「こういうのがあったら助かるのに」と思ったものを、個人でも使える形にして少しずつ公開しています。</p>
-      <p>「bimonatools」という名前は、うちで飼っている3匹(ビリー、モコ、ナツ)の名前から取りました。肩の力を抜いて使ってもらえる道具でありたいと思っています。</p>
+      <p>普段は会社で業務システムの開発をしながら、空いた時間で個人開発をしています。仕事の中で「こういうのがあったら助かるのに」と思ったものを、個人でも使える形にして公開していきます。</p>
     </div>
   </div>
 </section>
 
-<footer>
+<footer class="site-footer">
   <div class="wrap">
-    <div class="copy">&copy; 2026 bimonatools</div>
-    <div class="links">
-      <a href="#" id="sns-link">X (Twitter)</a>
-      <a href="#" id="mail-link">お問い合わせ</a>
-    </div>
+    &copy; 2026 BIMONAtools
   </div>
 </footer>
 
@@ -317,15 +331,17 @@
         return;
       }
 
+      const isImageIcon = icon => /\.(png|jpe?g|svg|webp)$/i.test(icon || '');
+
       list.innerHTML = apps.map(app => `
         <li class="app-row">
-          <div class="app-icon">${app.icon || '🧰'}</div>
+          <div class="app-icon">${isImageIcon(app.icon) ? `<img src="${app.icon}" alt="" loading="lazy">` : (app.icon || '🧰')}</div>
           <div class="app-body">
             <h3>${app.name}</h3>
             <p class="desc">${app.description}</p>
             <div class="meta">
               <span class="price-tag ${app.price === '無料' ? '' : 'paid'}">${app.price || '無料'}</span>
-              <a class="app-link" href="${app.url}" target="_blank" rel="noopener">くわしく見る</a>
+              <a class="app-link" href="${app.url}" target="_blank" rel="noopener">アプリを開く</a>
             </div>
           </div>
         </li>
